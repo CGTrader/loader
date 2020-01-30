@@ -1,0 +1,36 @@
+{
+  "name": "cgloader",
+  "version": "1.0.0",
+  "description": "Loader for CGTrader ARsenal services",
+  "main": "umd/index.js",
+  "scripts": {
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CGTrader/loader.git"
+  },
+  "keywords": [],
+  "author": "CGTrader",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CGTrader/loader/issues"
+  },
+  "homepage": "https://github.com/CGTrader/loader#readme",
+  "sideEffects": false,
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "babel-minify": "^0.5.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "file-loader": "^5.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.3"
+  }
+}
