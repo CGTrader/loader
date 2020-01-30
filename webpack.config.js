@@ -6,7 +6,6 @@ module.exports = {
   entry: {
     index: './src/loader.js'
   },
-  devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin(),
   ],
@@ -28,12 +27,5 @@ module.exports = {
         }
       },
     ],
-  },
-  optimization: {
-    usedExports: true,
-  },
-  resolve: {
-    extensions: ['.js'],
-    modules: ['node_modules']
   },
 };
