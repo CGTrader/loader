@@ -46,7 +46,7 @@ import {
 
   function embedAR() {
     switch (true) {
-      case (IS_IOS && IS_AR_QUICKLOOK_CANDIDATE):
+      case (IS_IOS && IS_AR_QUICKLOOK_CANDIDATE()):
         return IOS_WRAPPER(pathBuilder(usdz), domTarget);
       case IS_ANDROID:
         return ANDROID_WRAPPER(pathBuilder(gltf), domTarget, pathBuilder('viewer'));
