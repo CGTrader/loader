@@ -55,10 +55,10 @@ import {
     }
   }
 
-  switch (true) {
-    case (viewer === 'QR'):
+  switch (viewer) {
+    case 'QR':
       return embedQR();
-    case (viewer === 'AR'):
+    case 'AR':
       return embedAR();
     default:
       return embedIframe();
