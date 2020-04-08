@@ -22,7 +22,7 @@ import {
   const domTarget = document.querySelector(target)
 
   // Check if required viewer props are defined
-  if (!model && !user && !viewer && !target) {
+  if (!uid && !user && !viewer && !target) {
     return console.error('Required params missing')
   }
 
