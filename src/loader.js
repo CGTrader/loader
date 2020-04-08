@@ -6,7 +6,9 @@ import {
   IS_ANDROID,
 } from './components/utils'
 import {
-  IOS_WRAPPER
+  IOS_WRAPPER,
+  ANDROID_WRAPPER,
+  DESKTOP_WRAPPER,
 } from './components/wrapper'
 
 (function() {
