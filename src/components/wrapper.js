@@ -2,11 +2,11 @@ function wrapComponent(target, tempLink) {
   // Find target parent
   const parent = target.parentNode
 
-  // Wrap target component
-  tempLink.appendChild(target)
-
   // Replace target with wrapped target
   target.remove()
+
+  // Wrap target component
+  tempLink.appendChild(target)
 
   return parent.appendChild(tempLink)
 }
