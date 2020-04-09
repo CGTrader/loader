@@ -5,11 +5,8 @@ import {
   IS_AR_QUICKLOOK_CANDIDATE,
   IS_ANDROID,
 } from './components/utils'
-import {
-  IOS_WRAPPER,
-  ANDROID_WRAPPER,
-  DESKTOP_WRAPPER,
-} from './components/wrapper'
+import ARWrapper from './components/arwrapper'
+import QRGenerator from './components/qrgenerator'
 
 (function() {
   const arsenal = window.arsenal || {}
@@ -39,27 +36,11 @@ import {
     return domTarget.appendChild(iframe)
   }
 
-  function embedQR() {
-    // Will be done later
-    return false
-  }
-
-  function embedAR() {
-    switch (true) {
-      case (IS_IOS && IS_AR_QUICKLOOK_CANDIDATE()):
-        return IOS_WRAPPER(pathBuilder(usdz), domTarget);
-      case IS_ANDROID:
-        return ANDROID_WRAPPER(pathBuilder(gltf), domTarget, pathBuilder('viewer'));
-      default:
-        return DESKTOP_WRAPPER(pathBuilder('viewer'), domTarget);
-    }
-  }
-
   switch (viewer) {
     case 'QR':
-      return embedQR();
+      return QRGenerator(pathBuilder('viewer'), pathBuilder(gltf), pathBuilder(usdz), pathBuilder('landing'), domTarget);
     case 'AR':
-      return embedAR();
+      return ARWrapper(pathBuilder('viewer'), pathBuilder(gltf), pathBuilder(usdz), domTarget);
     default:
       return embedIframe();
   }

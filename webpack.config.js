@@ -1,5 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 module.exports = {
   mode: 'production',
@@ -15,6 +17,11 @@ module.exports = {
     library: "cgloader",
     libraryTarget: "umd"
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      test: /\.js(\?.*)?$/i,
+    })],
+  },
   module: {
     rules: [
       {
@@ -27,5 +34,8 @@ module.exports = {
         }
       },
     ],
+  },
+  node: {
+    fs: 'empty',
   },
 };
