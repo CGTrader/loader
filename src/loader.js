@@ -1,10 +1,5 @@
 import Embed from './components/embed'
-import {
-  URL,
-  IS_IOS,
-  IS_AR_QUICKLOOK_CANDIDATE,
-  IS_ANDROID,
-} from './components/utils'
+import URL from './components/utils'
 import ARWrapper from './components/arwrapper'
 import QRGenerator from './components/qrgenerator'
 
