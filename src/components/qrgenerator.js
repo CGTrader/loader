@@ -1,17 +1,21 @@
 import link from './link'
 
 export default function QRGenerator(viewerUrl, gltfUrl, usdzUrl, landingUrl, target) {
-  const QRCode = require('qrcode-svg');
+  const QRCode = require('qrcode-svg')
   const qrcode = new QRCode({
     content: landingUrl,
     join: true,
-    container: "svg-viewbox" //Useful but not required
+    container: "svg-viewbox",
+    xmlDeclaration: false
   }).svg()
 
   // Get formatted link
   const tempLink = link(viewerUrl, gltfUrl, usdzUrl)
 
-  tempLink.innerHTML = qrcode
+  const img = new Image()
+  img.src = 'data:image/svg+xml;base64,' + window.btoa(qrcode)
+
+  tempLink.appendChild(img)
 
   return target.appendChild(tempLink)
 }

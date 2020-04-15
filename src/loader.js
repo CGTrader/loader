@@ -1,5 +1,5 @@
 import Embed from './components/embed'
-import URL from './components/utils'
+import { URL } from './components/utils'
 import ARWrapper from './components/arwrapper'
 import QRGenerator from './components/qrgenerator'
 
