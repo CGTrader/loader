@@ -23,7 +23,7 @@ function Metadata(image, gltf, usdz, name) {
   script.type = "application/ld+json"
   script.text = data.replace(/^\s*[\r\n]/gm, '') // Remove empty lines caused by missing params
 
-  document.body.appendChild(script)
+  document.head.appendChild(script)
 }
 
 export default Metadata
