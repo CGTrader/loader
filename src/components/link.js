@@ -12,7 +12,7 @@ export default function link(viewerUrl, gltfUrl, usdzUrl) {
     tempLink.setAttribute('rel', 'ar')
   } else if (IS_ANDROID) {
     const viewerURL = new URL('intent://arvr.google.com/scene-viewer/1.0')
-    viewerURL.search = `file=${gltfUrl}?mode=ar_only`
+    viewerURL.search = `file=${gltfUrl}&mode=ar_preferred`
 
     const url = [
       viewerURL.toString(),

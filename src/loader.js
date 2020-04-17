@@ -2,6 +2,7 @@ import Embed from './components/embed'
 import { URL } from './components/utils'
 import ARWrapper from './components/arwrapper'
 import QRGenerator from './components/qrgenerator'
+import Metadata from './components/metadata'
 
 (function() {
   const arsenal = window.arsenal || {}
@@ -12,6 +13,8 @@ import QRGenerator from './components/qrgenerator'
     viewer = null,
     gltf = null,
     usdz = null,
+    preview = null,
+    name = null,
   } = arsenal
   const domTarget = document.querySelector(target)
 
@@ -20,22 +23,32 @@ import QRGenerator from './components/qrgenerator'
     return console.error('Required params missing')
   }
 
-  function pathBuilder(item) {
-    return `${URL}${user}/${uid}/${item}`
+  function urlBuilder(item) {
+    return !!item ? `${URL}${user}/${uid}/${item}` : undefined
   }
 
+  // Build all the URL's
+  const viewerPath = urlBuilder('viewer')
+  const previewPath = urlBuilder(preview)
+  const gltfPath = urlBuilder(gltf)
+  const usdzPath = urlBuilder(usdz)
+  const landingPath = urlBuilder('landing')
+
+  // Build iframe
   function embedIframe() {
-    const iframe = new Embed(pathBuilder('viewer'))
+    const iframe = new Embed(viewerPath)
 
     // Append iframe to target placeholder
-    return domTarget.appendChild(iframe)
+    domTarget.appendChild(iframe)
   }
+
+  Metadata(previewPath, gltfPath, usdzPath, name)
 
   switch (viewer) {
     case 'QR':
-      return QRGenerator(pathBuilder('viewer'), pathBuilder(gltf), pathBuilder(usdz), pathBuilder('landing'), domTarget);
+      return QRGenerator(viewerPath, gltfPath, usdzPath, landingPath, domTarget);
     case 'AR':
-      return ARWrapper(pathBuilder('viewer'), pathBuilder(gltf), pathBuilder(usdz), domTarget);
+      return ARWrapper(viewerPath, gltfPath, usdzPath, domTarget);
     default:
       return embedIframe();
   }
