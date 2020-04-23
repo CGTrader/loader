@@ -2,7 +2,6 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-
 module.exports = {
   mode: 'production',
   entry: {
@@ -32,6 +31,10 @@ module.exports = {
           presets: ['@babel/preset-env'],
           plugins: ['@babel/plugin-proposal-class-properties']
         }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
       },
     ],
   },

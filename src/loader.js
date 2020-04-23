@@ -1,7 +1,8 @@
 import Embed from './components/embed'
 import { URL } from './components/utils'
-import ARWrapper from './components/arwrapper'
 import QRGenerator from './components/qrgenerator'
+import ARWrapper from './components/arwrapper'
+import GalleryButton from './components/gallerybutton'
 import Metadata from './components/metadata'
 
 (function() {
@@ -42,13 +43,15 @@ import Metadata from './components/metadata'
     domTarget.appendChild(iframe)
   }
 
-  Metadata(previewPath, gltfPath, usdzPath, name)
+  Metadata(previewPath, gltfPath, usdzPath, name, domTarget)
 
   switch (viewer) {
     case 'QR':
       return QRGenerator(viewerPath, gltfPath, usdzPath, landingPath, domTarget);
     case 'AR':
       return ARWrapper(viewerPath, gltfPath, usdzPath, domTarget);
+    case 'Button':
+      return GalleryButton(landingPath, gltfPath, usdzPath, domTarget);
     default:
       return embedIframe();
   }
