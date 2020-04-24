@@ -16,6 +16,7 @@ import Metadata from './components/metadata'
     usdz = null,
     preview = null,
     name = null,
+    token = null,
   } = arsenal
   const domTarget = document.querySelector(target)
 
@@ -51,7 +52,7 @@ import Metadata from './components/metadata'
     case 'AR':
       return ARWrapper(viewerPath, gltfPath, usdzPath, domTarget);
     case 'Button':
-      return GalleryButton(landingPath, gltfPath, usdzPath, domTarget);
+      return GalleryButton(landingPath, gltfPath, usdzPath, domTarget, uid, token);
     default:
       return embedIframe();
   }
