@@ -1,6 +1,6 @@
 {
   "name": "cgloader",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "Loader for CGTrader ARsenal services",
   "main": "umd/index.js",
   "scripts": {
