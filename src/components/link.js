@@ -11,16 +11,16 @@ export default function link(viewerUrl, gltfUrl, usdzUrl) {
     tempLink.setAttribute('href', usdzUrl)
     tempLink.setAttribute('rel', 'ar')
   } else if (IS_ANDROID) {
-    const viewerURL = new URL('intent://arvr.google.com/scene-viewer/1.0')
-    viewerURL.search = `file=${gltfUrl}&mode=ar_preferred`
+    const androidViewer = new URL('intent://arvr.google.com/scene-viewer/1.0')
+    androidViewer.search = `file=${gltfUrl}&mode=ar_preferred`
 
     const url = [
-      viewerURL.toString(),
+      androidViewer.toString(),
       '#Intent;',
       `scheme=https;`,
       'package=com.google.ar.core;',
       'action=android.intent.action.VIEW;',
-      `S.browser_fallback_url=${encodeURIComponent(viewerUrl.toString())};`,
+      `S.browser_fallback_url=${encodeURIComponent(androidViewer.toString())};`,
       'end;',
     ].join('')
 
