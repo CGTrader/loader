@@ -7,7 +7,7 @@ const maxTouchPoints = typeof nav !== 'undefined' ? nav.maxTouchPoints : ''
 
 // Constants
 export const URL = 'https://viewer.cgtarsenal.com/'
-export const ARParam = 'cgtar'
+export const ARParam = 'cgtAR'
 
 // iOS checks
 export const IS_IOS = (/iPad|iPhone|iPod/.test(UA) && !win.MSStream) ||
