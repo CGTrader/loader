@@ -7,6 +7,9 @@ import Metadata from './components/metadata'
 
 (function() {
   const arsenal = window.arsenal || {}
+  const status = {
+    metadataMissing: true
+  }
 
   function createViewer(viewerParams) {
     const {
@@ -46,7 +49,10 @@ import Metadata from './components/metadata'
       domTarget.appendChild(iframe)
     }
 
-    Metadata(previewPath, gltfPath, usdzPath, name, domTarget)
+    if (status.metadataMissing) {
+      Metadata(previewPath, gltfPath, usdzPath, name, domTarget)
+      status.metadataMissing = false
+    }
 
     switch (viewer) {
       case 'QR':
