@@ -6,7 +6,7 @@ import {
 } from './utils'
 import Button from './button'
 import ARModal from './armodal'
-import yeet from './yeet'
+import redirect from './redirect'
 
 const styles = `
   #arsenal-button {
@@ -101,27 +101,7 @@ const styles = `
 
 export default function GalleryButton(landingPath, gltfUrl, usdzUrl, target, uid, token) {
   function onClick() {
-    const tempLink = link(landingPath, gltfUrl, usdzUrl)
-
-    if (IS_IOS && IS_AR_QUICKLOOK_CANDIDATE()) {
-      const image = new Image()
-
-      tempLink.appendChild(image)
-
-      yeet(uid, 'arkit', 'click_gallery_button', token)
-
-      return tempLink.click()
-    }
-
-    if (IS_ANDROID) {
-      yeet(uid, 'arcore', 'click_gallery_button', token)
-
-      return tempLink.click()
-    }
-
-    yeet(uid, 'desktop', 'click_gallery_button', token)
-
-    return openModal()
+    redirect(uid, token, landingPath, gltfUrl, usdzUrl, 'click_gallery_button', openModal)
   }
 
   const modal = ARModal(landingPath, closeModal)

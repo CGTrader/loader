@@ -1,14 +1,45 @@
 import Embed from './components/embed'
-import { URL } from './components/utils'
+import { getViewerParams, urlBuilder, ARParam } from './components/utils'
 import QRGenerator from './components/qrgenerator'
 import ARWrapper from './components/arwrapper'
 import GalleryButton from './components/gallerybutton'
 import Metadata from './components/metadata'
+import redirect from './components/redirect'
 
 (function() {
   const arsenal = window.arsenal || {}
+  const multipleViewers = Array.isArray(arsenal)
   const status = {
     metadataMissing: true
+  }
+  const currentURL = window.location || { search: '' }
+  const currentURLSearch = currentURL.search
+  const shouldRedirect = currentURLSearch.search(ARParam) > -1
+
+  if (shouldRedirect) {
+    const viewer = multipleViewers ? getViewerParams(currentURLSearch, arsenal, multipleViewers) : arsenal
+    const {
+      uid,
+      token,
+      gltf,
+      usdz,
+      user,
+    } = viewer
+    const gltfPath = urlBuilder(gltf, user, uid)
+    const usdzPath = urlBuilder(usdz, user, uid)
+
+    redirect(uid, token, null, gltfPath, usdzPath, 'redirect_qr_code', () => {})
+  }
+
+  function getRedirectLanding(uid) {
+    const params = [
+      currentURL.href,
+      currentURL.search.length > 0 ? '&' : '?',
+      ARParam,
+      '=',
+      uid
+    ]
+    return params.join('')
   }
 
   function createViewer(viewerParams) {
@@ -30,16 +61,13 @@ import Metadata from './components/metadata'
       return console.error('Required params missing for', uid)
     }
 
-    function urlBuilder(item) {
-      return !!item ? `${URL}${user}/${uid}/${item}` : undefined
-    }
-
     // Build all the URL's
-    const viewerPath = urlBuilder('viewer')
-    const previewPath = urlBuilder(preview)
-    const gltfPath = urlBuilder(gltf)
-    const usdzPath = urlBuilder(usdz)
-    const landingPath = urlBuilder('landing')
+    const viewerPath = urlBuilder('viewer', user, uid)
+    const previewPath = urlBuilder(preview, user, uid)
+    const gltfPath = urlBuilder(gltf, user, uid)
+    const usdzPath = urlBuilder(usdz, user, uid)
+    const landingPath = urlBuilder('landing', user, uid)
+    const buttonLandingPath = currentURL.href ? getRedirectLanding(uid) : landingPath
 
     // Build iframe
     function embedIframe() {
@@ -60,7 +88,7 @@ import Metadata from './components/metadata'
       case 'AR':
         return ARWrapper(viewerPath, gltfPath, usdzPath, domTarget);
       case 'Button':
-        return GalleryButton(landingPath, gltfPath, usdzPath, domTarget, uid, token);
+        return GalleryButton(buttonLandingPath, gltfPath, usdzPath, domTarget, uid, token);
       default:
         return embedIframe();
     }
