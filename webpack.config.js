@@ -1,6 +1,6 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: 'production',
@@ -11,13 +11,13 @@ module.exports = {
     new CleanWebpackPlugin(),
   ],
   output: {
-    filename: '[name].js',
     path: path.resolve(__dirname, 'umd'),
     library: "cgloader",
     libraryTarget: "umd"
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin({
+    minimize: true,
+    minimizer: [new TerserPlugin({
       test: /\.js(\?.*)?$/i,
     })],
   },
@@ -38,7 +38,9 @@ module.exports = {
       },
     ],
   },
-  node: {
-    fs: 'empty',
+  resolve: {
+    fallback: {
+      fs: false,
+    },
   },
 };
