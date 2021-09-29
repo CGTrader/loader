@@ -62,7 +62,7 @@ import redirect from './components/redirect'
     }
 
     // Build all the URL's
-    const viewerPath = urlBuilder('viewer', user, uid)
+    const viewerPath = urlBuilder(viewer === '360HD' ? 'rotator' : 'viewer', user, uid)
     const previewPath = urlBuilder(preview, user, uid)
     const gltfPath = urlBuilder(gltf, user, uid)
     const usdzPath = urlBuilder(usdz, user, uid)
