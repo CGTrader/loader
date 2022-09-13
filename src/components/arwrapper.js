@@ -18,7 +18,7 @@ function placeholderSrc() {
 
 export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
   // Get formatted link
-  const tempLink = link(viewerUrl, gltfUrl, usdzUrl)
+  const tempLink = link(viewerUrl, gltfUrl, usdzUrl, true)
 
   // Find target parent
   const parent = target?.parentNode
