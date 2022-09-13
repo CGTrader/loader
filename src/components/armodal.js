@@ -20,7 +20,7 @@ export default function ARModal(landingUrl, close) {
       </div>
       <div class="arsenal-modal__text--small">
         *Augmented reality experience is currently supported on the following devices:<br>
-        iPhone on iOS 12.0+<br>
+        iPhone on iOS 12+<br>
         Android 8.0+ with ARCore 1.9+ support
       </div>
     </div>
