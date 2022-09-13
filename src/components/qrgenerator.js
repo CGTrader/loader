@@ -17,5 +17,5 @@ export default function QRGenerator(viewerUrl, gltfUrl, usdzUrl, landingUrl, tar
 
   tempLink.appendChild(img)
 
-  return target.appendChild(tempLink)
+  return target?.appendChild(tempLink)
 }

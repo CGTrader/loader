@@ -6,9 +6,10 @@ import {
 
 export default function link(viewerUrl, gltfUrl, usdzUrl, isFromARWrapper = false) {
   const tempLink = document.createElement('a')
+  const url = isFromARWrapper ? viewerUrl : usdzUrl
 
   if (IS_IOS && IS_AR_QUICKLOOK_CANDIDATE()) {
-    tempLink.setAttribute('href', isFromARWrapper ? viewerUrl : usdzUrl)
+    tempLink.setAttribute('href', url)
     tempLink.setAttribute('rel', 'ar')
   } else if (IS_ANDROID) {
     const androidViewer = new URL('intent://arvr.google.com/scene-viewer/1.0')
