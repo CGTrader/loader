@@ -88,7 +88,7 @@ import redirect from './components/redirect'
       case 'AR':
         return ARWrapper(viewerPath, gltfPath, usdzPath, domTarget);
       case 'Button':
-        return GalleryButton(landingPath, gltfPath, usdzPath, domTarget, uid, token);
+        return GalleryButton(viewerPath, gltfPath, usdzPath, domTarget, uid, token);
       default:
         return embedIframe();
     }
