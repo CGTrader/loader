@@ -31,17 +31,6 @@ import redirect from './components/redirect'
     redirect(uid, token, null, gltfPath, usdzPath, 'redirect_qr_code', () => {})
   }
 
-  function getRedirectLanding(uid) {
-    const params = [
-      currentURL.href,
-      currentURL.search.length > 0 ? '&' : '?',
-      ARParam,
-      '=',
-      uid
-    ]
-    return params.join('')
-  }
-
   function createViewer(viewerParams) {
     const {
       uid = null,
