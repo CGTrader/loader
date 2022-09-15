@@ -31,17 +31,6 @@ import redirect from './components/redirect'
     redirect(uid, token, null, gltfPath, usdzPath, 'redirect_qr_code', () => {})
   }
 
-  // function getRedirectLanding(uid) {
-  //   const params = [
-  //     currentURL.href,
-  //     currentURL.search.length > 0 ? '&' : '?',
-  //     ARParam,
-  //     '=',
-  //     uid
-  //   ]
-  //   return params.join('')
-  // }
-
   function createViewer(viewerParams) {
     const {
       uid = null,
@@ -67,7 +56,6 @@ import redirect from './components/redirect'
     const gltfPath = urlBuilder(gltf, user, uid)
     const usdzPath = urlBuilder(usdz, user, uid)
     const landingPath = urlBuilder('landing', user, uid)
-    // const buttonLandingPath = currentURL.href ? getRedirectLanding(uid) : landingPath
 
     // Build iframe
     function embedIframe() {
@@ -88,7 +76,7 @@ import redirect from './components/redirect'
       case 'AR':
         return ARWrapper(viewerPath, gltfPath, usdzPath, domTarget);
       case 'Button':
-        return GalleryButton(viewerPath, gltfPath, usdzPath, domTarget, uid, token);
+        return GalleryButton(landingPath, gltfPath, usdzPath, domTarget, uid, token);
       default:
         return embedIframe();
     }
