@@ -15,6 +15,7 @@ const styles = `
     border-radius: 2px;
     display: flex;
     padding-right: 12px;
+    min-width: fit-content;
     height: 34px;
     cursor: pointer;
   }
