@@ -15,7 +15,7 @@ export default function QRGenerator(viewerUrl, gltfUrl, usdzUrl, landingUrl, tar
   const img = new Image()
   img.src = 'data:image/svg+xml;base64,' + window.btoa(qrcode)
 
-  tempLink.appendChild(img)
+  tempLink?.appendChild(img)
 
   return target?.appendChild(tempLink)
 }

@@ -17,6 +17,10 @@ function placeholderSrc() {
 }
 
 export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
+  if (!target) {
+    return
+  }
+
   // Get formatted link
   const tempLink = link(viewerUrl, gltfUrl, usdzUrl, true)
 
@@ -24,20 +28,20 @@ export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
   const parent = target?.parentNode
 
   // Replace target with wrapped target
-  target.remove()
+  target?.remove()
 
   // Check if target is not empty
-  if (target.nodeName !== "IMG" && target.innerHTML === '') {
+  if (target && target.nodeName !== "IMG" && target.innerHTML === '') {
     const placeholder = document.createElement('img')
 
     placeholder.setAttribute('src', placeholderSrc())
     placeholder.setAttribute('alt', 'View in 3D')
 
     // Wrap target component
-    tempLink.appendChild(placeholder)
+    tempLink?.appendChild(placeholder)
   } else {
     // Wrap target component
-    tempLink.appendChild(target)
+    tempLink?.appendChild(target)
   }
 
   tempLink.setAttribute('alt', 'View in 3D')

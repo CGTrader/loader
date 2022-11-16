@@ -109,7 +109,7 @@ export default function GalleryButton(landingPath, gltfUrl, usdzUrl, target, uid
 
   function openModal() {
     document.body.style.overflow = 'hidden'
-    document.body.appendChild(modal)
+    document.body?.appendChild(modal)
     setTimeout(() => modal.classList.add('is-shown'), 10)
   }
 
@@ -117,8 +117,8 @@ export default function GalleryButton(landingPath, gltfUrl, usdzUrl, target, uid
     if (!(e.target === modal || bypass)) return
 
     document.body.style.overflow = null
-    modal.classList.remove('is-shown')
-    setTimeout(() => modal.remove(), 410)
+    modal?.classList?.remove('is-shown')
+    setTimeout(() => modal?.remove(), 410)
   }
 
   modal.addEventListener('click', (event) => closeModal(event))
@@ -130,5 +130,5 @@ export default function GalleryButton(landingPath, gltfUrl, usdzUrl, target, uid
 
   const placeholder = Button(onClick)
 
-  return target.appendChild(placeholder)
+  return target?.appendChild(placeholder)
 }

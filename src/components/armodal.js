@@ -38,7 +38,7 @@ export default function ARModal(landingUrl, close) {
   closeModalBtn.addEventListener('click', (event) => close(event, true))
 
   // Add close button to modal
-  modal.children[0].appendChild(closeModalBtn)
+  modal.children[0]?.appendChild(closeModalBtn)
 
   return modal
 }
