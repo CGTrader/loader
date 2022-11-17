@@ -101,6 +101,10 @@ const styles = `
 `
 
 export default function GalleryButton(landingPath, gltfUrl, usdzUrl, target, uid, token) {
+  if (!target) {
+    return
+  }
+
   function onClick() {
     redirect(uid, token, landingPath, gltfUrl, usdzUrl, 'click_gallery_button', openModal)
   }

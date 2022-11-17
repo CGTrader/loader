@@ -1,6 +1,10 @@
 import link from './link'
 
 export default function QRGenerator(viewerUrl, gltfUrl, usdzUrl, landingUrl, target) {
+  if (!target) {
+    return
+  }
+
   const QRCode = require('qrcode-svg')
   const qrcode = new QRCode({
     content: landingUrl,
@@ -15,7 +19,7 @@ export default function QRGenerator(viewerUrl, gltfUrl, usdzUrl, landingUrl, tar
   const img = new Image()
   img.src = 'data:image/svg+xml;base64,' + window.btoa(qrcode)
 
-  tempLink?.appendChild(img)
+  tempLink.appendChild(img)
 
-  return target?.appendChild(tempLink)
+  return target.appendChild(tempLink)
 }

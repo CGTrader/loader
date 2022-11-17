@@ -66,7 +66,7 @@ import redirect from './components/redirect'
       const iframe = new Embed(viewerPath)
 
       // Append iframe to target placeholder
-      domTarget?.appendChild(iframe)
+      domTarget.appendChild(iframe)
     }
 
     if (status.metadataMissing) {

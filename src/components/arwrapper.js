@@ -25,26 +25,26 @@ export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
   const tempLink = link(viewerUrl, gltfUrl, usdzUrl, true)
 
   // Find target parent
-  const parent = target?.parentNode
+  const parent = target.parentNode
 
   // Replace target with wrapped target
-  target?.remove()
+  target.remove()
 
   // Check if target is not empty
-  if (target && target.nodeName !== "IMG" && target.innerHTML === '') {
+  if (target.nodeName !== "IMG" && target.innerHTML === '') {
     const placeholder = document.createElement('img')
 
     placeholder.setAttribute('src', placeholderSrc())
     placeholder.setAttribute('alt', 'View in 3D')
 
     // Wrap target component
-    tempLink?.appendChild(placeholder)
+    tempLink.appendChild(placeholder)
   } else {
     // Wrap target component
-    tempLink?.appendChild(target)
+    tempLink.appendChild(target)
   }
 
   tempLink.setAttribute('alt', 'View in 3D')
 
-  return parent?.appendChild(tempLink)
+  return parent.appendChild(tempLink)
 }
