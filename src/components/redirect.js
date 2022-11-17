@@ -12,7 +12,7 @@ export default function redirect(uid, token, landingPath, gltfUrl, usdzUrl, trac
   if (IS_IOS && IS_AR_QUICKLOOK_CANDIDATE()) {
       const image = new Image()
 
-      tempLink?.appendChild(image)
+      tempLink.appendChild(image)
 
       yeet(uid, 'arkit', trackAction, token)
 
