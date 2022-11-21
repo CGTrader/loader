@@ -17,11 +17,15 @@ function placeholderSrc() {
 }
 
 export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
+  if (!target) {
+    return
+  }
+
   // Get formatted link
   const tempLink = link(viewerUrl, gltfUrl, usdzUrl, true)
 
   // Find target parent
-  const parent = target?.parentNode
+  const parent = target.parentNode
 
   // Replace target with wrapped target
   target.remove()
@@ -42,5 +46,5 @@ export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
 
   tempLink.setAttribute('alt', 'View in 3D')
 
-  return parent?.appendChild(tempLink)
+  return parent.appendChild(tempLink)
 }

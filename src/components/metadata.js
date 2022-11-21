@@ -1,4 +1,8 @@
 function Metadata(image, gltf, usdz, name, target) {
+  if (!target) {
+    return
+  }
+
   const script = document.createElement('script')
 
   function returnValue(title, value) {
