@@ -2,7 +2,7 @@ import axios from 'axios'
 
 function yeet(uid, platform, action, token) {
   const payload = { embed: { content_group: platform, action } }
-  const url = `https://app.arsenal.cgtrader.com/api/v1/product-viewers/${uid}/track`
+  const url = `https://app.modelry.ai/api/v1/product-viewers/${uid}/track`
   const headers = { 'Authorization': token }
 
   axios.post(url, payload, { headers: headers })
