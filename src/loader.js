@@ -81,6 +81,8 @@ import redirect from './components/redirect'
         if (error.response && error.response.status === 403) {
           return console.error(`Viewer type: ${viewer} for product: ${name} has either an invalid user or uid`)
         }
+
+        onSuccess()
       })
     }
 
