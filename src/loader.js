@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import Embed from './components/embed'
 import { getViewerParams, urlBuilder, ARParam } from './components/utils'
 import QRGenerator from './components/qrgenerator'
@@ -76,23 +74,15 @@ import redirect from './components/redirect'
       status.metadataMissing = false
     }
 
-    function validatePath(path, onSuccess) {
-      return axios.get(path).then(onSuccess).catch(error => {
-        if (error.response && error.response.status === 403) {
-          return console.error(`Viewer type: ${viewer} for product: ${name} has either an invalid user or uid`)
-        }
-      })
-    }
-
     switch (viewer) {
       case 'QR':
-        return validatePath(viewerPath, () => QRGenerator(viewerPath, gltfPath, usdzPath, landingPath, domTarget))
+        return QRGenerator(viewerPath, gltfPath, usdzPath, landingPath, domTarget);
       case 'AR':
-        return validatePath(viewerPath, () => ARWrapper(viewerPath, gltfPath, usdzPath, domTarget))
+        return ARWrapper(viewerPath, gltfPath, usdzPath, domTarget);
       case 'Button':
-        return validatePath(landingPath, () => GalleryButton(landingPath, gltfPath, usdzPath, domTarget, uid, token))
+        return GalleryButton(landingPath, gltfPath, usdzPath, domTarget, uid, token);
       default:
-        return validatePath(viewerPath, embedIframe)
+        return embedIframe();
     }
   }
 
