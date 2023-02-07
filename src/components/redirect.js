@@ -1,5 +1,4 @@
 import {
-  IS_IOS,
   IS_AR_QUICKLOOK_CANDIDATE,
   IS_ANDROID,
 } from './utils'
@@ -9,7 +8,7 @@ import yeet from './yeet'
 export default function redirect(uid, token, landingPath, gltfUrl, usdzUrl, trackAction, callback) {
   const tempLink = link(landingPath, gltfUrl, usdzUrl)
 
-  if (IS_IOS && IS_AR_QUICKLOOK_CANDIDATE()) {
+  if (IS_AR_QUICKLOOK_CANDIDATE()) {
       const image = new Image()
 
       tempLink.appendChild(image)
