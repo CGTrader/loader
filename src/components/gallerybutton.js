@@ -1,9 +1,3 @@
-import link from './link'
-import {
-  IS_IOS,
-  IS_AR_QUICKLOOK_CANDIDATE,
-  IS_ANDROID,
-} from './utils'
 import Button from './button'
 import ARModal from './armodal'
 import redirect from './redirect'
