@@ -21,7 +21,7 @@ export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
   }
 
   // Get formatted link
-  const tempLink = link(viewerUrl, gltfUrl, usdzUrl, true)
+  const tempLink = link(viewerUrl, gltfUrl, usdzUrl)
 
   // Find target parent
   const parent = target.parentNode
@@ -41,9 +41,14 @@ export default function ARWrapper(viewerUrl, gltfUrl, usdzUrl, target) {
   } else {
     // Wrap target component
     tempLink.appendChild(target)
-  }
 
-  tempLink.setAttribute('alt', 'View in 3D')
+    // On iOS for a link to work, first element of the link needs to be an <img>
+    if (target.nodeName !== "IMG" && IS_AR_QUICKLOOK_CANDIDATE()) {
+      const hiddenImg = document.createElement('img')
+      hiddenImg.style = 'display: none'
+      tempLink.prepend(hiddenImg)
+    }
+  }
 
   return parent.appendChild(tempLink)
 }
